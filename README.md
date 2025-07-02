@@ -25,14 +25,14 @@ RhythmTag는 YouTube 링크를 기반으로 사용자가 노래를 추천하고,
 ---
 
 ## 3️⃣ 프로젝트 실행 방법
-# 가상환경 실행
+**가상환경 실행**
 source venv/bin/activate  # Mac/Linux
 venv\Scripts\activate  # Windows
 
-# 패키지 설치
+**패키지 설치**
 pip install -r requirements.txt
 
-# 서버 실행
+**서버 실행**
 python manage.py runserver
 
 --- 
