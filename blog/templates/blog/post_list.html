@@ -1,0 +1,81 @@
+<!-- blog/templates/blog/post_list.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>RhythmTag</title>
+        <link rel="stylesheet" href="{% static 'blog/css/common.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/post_list.css' %}">
+    </head>
+    <body>
+        <header>
+            <div id="header">
+                <div id="logo">
+                    <img src="{% static 'blog/images/logo.png' %}" alt="RhythmTag">
+                </div>
+                <div class="menu">
+                    <div id="user">
+                        <img src="{% static 'blog/images/user.png' %}" alt="내 정보">
+                    </div>
+                    <div id="menu">
+                        <img src="{% static 'blog/images/menu.png' %}" alt="메뉴">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" placeholder="검색어를 입력하세요(제목, 태그)">
+        </div>
+
+        <div class="blog-name">
+            <p>#내 블로그 이름</p>
+        </div>
+
+        <section id="category">
+            <div class="category-btn">
+                <input type="radio" name="filter" id="MyPost" checked>
+                <label for="MyPost">내가 작성한 글</label>
+
+                <input type="radio" name="filter" id="follow">
+                <label for="follow">팔로워/팔로잉</label>
+
+                <input type="radio" name="filter" id="famous">
+                <label for="famous">인기가 많은 글</label>
+            </div>
+            <div class="write">
+                <p><a href="#">새 글 쓰기</a></p>
+            </div>
+        </section>
+
+        <section id="post-list">
+            {% for post in posts %}
+            <div class="post-card">
+                <a href="{% url 'post_detail' post.id %}">
+                    <div id="thumnail">
+                        {% if post.youtube_thumbnail_url %}
+                            <img src="{{ post.youtube_thumbnail_url }}" alt="썸네일">
+                        {% else %}
+                            <p>유효하지 않은 유튜브 링크</p>
+                        {% endif %}
+                    </div>
+                    <div id="info">
+                        <div id="userName">{{ post.user.nickName }}</div>
+                        <div id="likes">❤️ 0</div>
+                    </div>
+                    <div id="post-content">
+                        {{ post.content|truncatechars:20 }}
+                    </div>
+                    <div id="tags">
+                        {% for tag in post.tags.all %}{{ tag.name }} {% endfor %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </section>
+    </body>
+</html>

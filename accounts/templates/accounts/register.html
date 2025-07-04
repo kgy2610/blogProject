@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">
+</head>
+<body>
+    <div class="main-title">
+        <img src="{% static 'accounts/images/logo.png' %}" alt="RhythmTag">
+        <h1>#REGISTER</h1>
+    </div>
+    
+    <div id="main-register">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <table border="0" cellspacing="2" cellpadding="1">
+                <tr>
+                    <th style="height: 50px;">{{ form.name.label }}</th>
+                    <td>
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ form.email.label }}</th>
+                    <td>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ form.phone.label }}</th>
+                    <td>
+                        {{ form.phone }}
+                        {{ form.phone.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ form.password.label }}</th>
+                    <td>
+                        {{ form.password }}
+                        {{ form.password.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ form.nickname.label }}</th>
+                    <td>
+                        {{ form.nickname }}
+                        {{ form.nickname.errors }}
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">회원가입</button>
+            <a href="{% url 'login' %}">로그인</a>
+        </form>
+    </div>
+</body>
+</html>
